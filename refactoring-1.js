@@ -1,4 +1,8 @@
 export function statement(invoice, plays) {
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID];
+  }
+
   function amountFor(play, aPerformance) {
     let result = 0;
 
@@ -33,7 +37,7 @@ export function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    const play = plays[perf.playID]; // object {name, type}
+    const play = playFor(perf); // object {name, type}
 
     let thisAmount = amountFor(play, perf);
 
