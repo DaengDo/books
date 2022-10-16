@@ -1,9 +1,13 @@
 export function statement(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
-  statementData.performances = invoice.performances.map((perf) => {
-    return { ...perf };
-  });
+  statementData.performances = invoice.performances.map(enrichPerformance);
+
+  function enrichPerformance(aPerformance) {
+    const result = { ...aPerformance };
+
+    return result;
+  }
 
   return renderPlainText(statementData, plays);
 }
